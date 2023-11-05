@@ -5,10 +5,10 @@ import * as AuthService from '../service/AuthService';
 const router = Router();
 
 router.post('/', async (req, res, next) => {
-  const { authCode } = req.body;
+  const { code } = req.query;
 
   try {
-    const response = await AuthService.loginUser(authCode);
+    const response = await AuthService.loginUser(code as string);
     return res.status(200).json(response);
   } catch (error) {
     if (error instanceof BsmOauthError) {
