@@ -15,8 +15,8 @@ enum Role {
 model User {
   id          Int     @id
   github_id   String?
-  profile_url String?
+  profile_url String
   name        String
-  semester    Int?
+  semester    Int
   role        Role    @default(STUDENT)
 }

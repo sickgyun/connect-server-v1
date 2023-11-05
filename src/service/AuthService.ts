@@ -1,11 +1,5 @@
 import { Role } from '@prisma/client';
-import BsmOauth, { BsmOauthError, BsmOauthErrorType, BsmUserRole } from 'bsm-oauth';
-import { NextFunction } from 'express';
-import {
-  BadRequestException,
-  ForbiddenException,
-  InternalServerException,
-} from '../global/exception';
+import BsmOauth, { BsmUserRole } from 'bsm-oauth';
 import jwt from 'jsonwebtoken';
 import * as UserRepository from '../repository/AuthRepository';
 import getEnvCofigs from '../global/env';
@@ -19,8 +13,10 @@ export const loginUser = async (authCode: string) => {
   const { userCode, profileUrl } = resource;
 
   if (resource.role === BsmUserRole.STUDENT) {
-    const { name, grade } = resource.student;
+    const { name, grade, enrolledAt } = resource.student;
+    const semester = enrolledAt - 2020;
     let userRole: Role = Role.STUDENT;
+
     // 졸업생이면
     if (grade === 0) {
       userRole = Role.GRADUATE;
@@ -31,8 +27,8 @@ export const loginUser = async (authCode: string) => {
       name: name,
       profile_url: profileUrl,
       role: userRole,
+      semester: semester,
       github_id: '',
-      semester: 0,
     };
     await UserRepository.upsertUser(userInfo);
 
