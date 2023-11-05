@@ -3,14 +3,13 @@
     "typeRoots": ["./node_modules/@types", "./@types"],
     "target": "ES6",
     "module": "CommonJS",
-    "moduleResolution": "node", //모듈 해석 방법 설정: 'node' (Node.js)
+    "moduleResolution": "node",
     "esModuleInterop": true,
     "strict": true,
     "sourceMap": true,
     "allowJs": true,
     "checkJs": true,
     "outDir": "./dist",
-    "rootDir": "./src"
   },
   "include": ["src/**/*.d.ts", "src/**/*.js", "src/**/*.ts"]
 }

@@ -13,7 +13,7 @@ enum Role {
 }
 
 model User {
-  id          Int     @id @unique
+  id          Int     @id
   github_id   String?
   profile_url String?
   name        String

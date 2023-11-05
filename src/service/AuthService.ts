@@ -1,6 +1,6 @@
 import { Role } from '@prisma/client';
 import BsmOauth, { BsmOauthError, BsmOauthErrorType, BsmUserRole } from 'bsm-oauth';
-import { NextFunction, Request, Response } from 'express';
+import { NextFunction } from 'express';
 import {
   BadRequestException,
   ForbiddenException,
@@ -8,16 +8,12 @@ import {
 } from '../global/exception';
 import jwt from 'jsonwebtoken';
 import * as UserRepository from '../repository/AuthRepository';
+import getEnvCofigs from '../global/env';
 
-const BSM_AUTH_CLIENT_ID = process.env.CLIENT_ID || '';
-const BSM_AUTH_CLIENT_SECRET = process.env.CLIENT_SECRET || '';
-
-console.log(BSM_AUTH_CLIENT_SECRET);
-const SCRECT_KEY = process.env.SCRECT_KEY!;
+const { BSM_AUTH_CLIENT_ID, BSM_AUTH_CLIENT_SECRET, JWT_SCRECT_KEY } = getEnvCofigs();
 const bsmOauth = new BsmOauth(BSM_AUTH_CLIENT_ID, BSM_AUTH_CLIENT_SECRET);
 
-export const loginUser = async (req: Request, res: Response, next: NextFunction) => {
-  const authCode = req.query.code;
+export const loginUser = async (authCode: string, next: NextFunction) => {
   try {
     if (!authCode) return next(new BadRequestException());
     const token = await bsmOauth.getToken(authCode as string);
@@ -26,10 +22,10 @@ export const loginUser = async (req: Request, res: Response, next: NextFunction)
     if (resource) {
       if (resource.role === BsmUserRole.STUDENT) {
         const { name, grade } = resource.student;
-        let userRole: Role = 'STUDENT';
+        let userRole: Role = Role.STUDENT;
         // 졸업생이면
         if (grade === 0) {
-          userRole = 'GRADUATE';
+          userRole = Role.GRADUATE;
         }
         const userInfo = {
           id: userCode,
@@ -43,30 +39,27 @@ export const loginUser = async (req: Request, res: Response, next: NextFunction)
       } else {
         return next(new ForbiddenException());
       }
-      const jwtToken = jwt.sign({ userCode }, SCRECT_KEY, { expiresIn: '30m' });
-      return res.status(200).json({
+      const jwtToken = jwt.sign({ userCode }, JWT_SCRECT_KEY, { expiresIn: '30m' });
+      return {
         message: '로그인 성공',
         data: { accessToken: jwtToken, refreshToken: jwtToken },
-      });
+      };
     }
   } catch (error) {
     if (error instanceof BsmOauthError) {
       switch (error.type) {
         case BsmOauthErrorType.INVALID_CLIENT: {
-          next(new InternalServerException());
-          break;
+          return next(new InternalServerException());
         }
         case BsmOauthErrorType.AUTH_CODE_NOT_FOUND: {
-          next(new BadRequestException());
-          break;
+          return next(new BadRequestException());
         }
         case BsmOauthErrorType.TOKEN_NOT_FOUND: {
-          next(new InternalServerException());
-          break;
+          return next(new InternalServerException());
         }
       }
     } else {
-      next(new InternalServerException());
+      return next(new InternalServerException());
     }
   }
 };
