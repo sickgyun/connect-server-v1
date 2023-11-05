@@ -17,6 +17,7 @@ export const loginUser = async (authCode: string) => {
   const token = await bsmOauth.getToken(authCode as string);
   const resource = await bsmOauth.getResource(token);
   const { userCode, profileUrl } = resource;
+
   if (resource.role === BsmUserRole.STUDENT) {
     const { name, grade } = resource.student;
     let userRole: Role = Role.STUDENT;
@@ -24,6 +25,7 @@ export const loginUser = async (authCode: string) => {
     if (grade === 0) {
       userRole = Role.GRADUATE;
     }
+
     const userInfo = {
       id: userCode,
       name: name,

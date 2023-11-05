@@ -6,9 +6,9 @@ const router = Router();
 
 router.post('/', async (req, res, next) => {
   const { authCode } = req.body;
+
   try {
     const response = await AuthService.loginUser(authCode);
-
     return res.status(200).json(response);
   } catch (error) {
     if (error instanceof BsmOauthError) {
