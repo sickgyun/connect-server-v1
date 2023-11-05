@@ -1,20 +1,18 @@
-import 'dotenv/config'; // env파일 사용
+import 'dotenv/config';
 import cors from 'cors';
 import express from 'express';
+
+import AuthController from './controller/AuthContoller';
 
 const app = express();
 const PORT = process.env.PORT || 8088;
 
-app.use(cors()); // CORS 이슈 해결
-app.use(express.urlencoded({ extended: true })); // query 받기
-app.use(express.json()); // body 받기
+app.use(cors());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
-const router = express.Router();
-router.get('/api', (req, res, next) => {
-  res.json({ message: 'welcome!' });
-});
+app.use('/auth', AuthController);
 
-app.use('/', router);
 app.listen(PORT, () => {
   console.log(`
   ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
