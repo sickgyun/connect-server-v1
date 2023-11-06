@@ -1,7 +1,9 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import { generateError } from '../middleware/errorHandler';
 import * as AuthService from '../service/AuthService';
-const router = Router();
+import asyncify from 'express-asyncify';
+
+const router = asyncify(Router());
 
 router.post('/', async (req: Request, res: Response, next: NextFunction) => {
   const { code } = req.query;

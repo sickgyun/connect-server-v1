@@ -895,6 +895,11 @@ execa@^7.1.1:
     signal-exit "^3.0.7"
     strip-final-newline "^3.0.0"
 
+express-asyncify@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/express-asyncify/-/express-asyncify-2.1.2.tgz#26fff4bc2ae7ef9ea4f2fb6a0ede8f946a4d5648"
+  integrity sha512-LHtXdJ0Op1K7K/daRMzAIHdYluk6GE3GBX7HlmrltpC1XNu8VwTYQv0U6xHyFCTpe5HAYdbVaGQxQcywTDWZeQ==
+
 express@^4.18.2:
   version "4.18.2"
   resolved "https://registry.npmjs.org/express/-/express-4.18.2.tgz"
