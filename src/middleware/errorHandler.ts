@@ -23,11 +23,11 @@ export interface ErrorWithStatus extends Error {
 }
 
 export const generateError = ({
-  message = '',
+  message = '서버에 알 수 없는 오류가 발생하였습니다.',
   status = 500,
 }: {
-  message: string;
-  status: StatusType;
+  message?: string;
+  status?: StatusType;
 }) => {
   const error: ErrorWithStatus = new Error(
     message || DEFAULT_HTTP_STATUS_MESSAGES[status]
