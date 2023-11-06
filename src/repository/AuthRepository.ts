@@ -17,7 +17,7 @@ export const upsertUser = async (user: User) => {
       profile_url: user.profile_url,
       role: user.role,
       github_id: user.github_id,
-      semester: user.semester,
+      cardinal: user.cardinal,
     },
   });
 

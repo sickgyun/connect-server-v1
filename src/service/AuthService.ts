@@ -14,7 +14,7 @@ export const loginUser = async (code: string) => {
 
   if (resource.role === BsmUserRole.STUDENT) {
     const { name, grade, enrolledAt } = resource.student;
-    const semester = enrolledAt - 2020;
+    const cardinal = enrolledAt - 2020;
     let userRole: Role = Role.STUDENT;
 
     // 졸업생이면
@@ -27,15 +27,17 @@ export const loginUser = async (code: string) => {
       name: name,
       profile_url: profileUrl,
       role: userRole,
-      semester: semester,
+      cardinal: cardinal,
       github_id: '',
     };
     await UserRepository.upsertUser(userInfo);
 
-    const jwtToken = jwt.sign({ userCode }, JWT_SCRECT_KEY, { expiresIn: '30m' });
+    const accessToken = jwt.sign({ userCode }, JWT_SCRECT_KEY, { expiresIn: '30m' });
+    const refreshToken = jwt.sign({ userCode }, JWT_SCRECT_KEY, { expiresIn: '30d' });
+
     return {
       message: '로그인 성공',
-      data: { accessToken: jwtToken, refreshToken: jwtToken },
+      data: { accessToken, refreshToken },
     };
   }
 };

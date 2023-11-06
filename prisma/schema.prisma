@@ -17,6 +17,6 @@ model User {
   github_id   String?
   profile_url String
   name        String
-  semester    Int
+  cardinal    Int
   role        Role    @default(STUDENT)
 }

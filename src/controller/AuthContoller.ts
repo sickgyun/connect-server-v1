@@ -1,32 +1,15 @@
-import { BsmOauthError, BsmOauthErrorType } from 'bsm-oauth';
-import { Router } from 'express';
-import { BadRequestException, InternalServerException } from '../global/exception';
+import { Router, Request, Response, NextFunction } from 'express';
+import { generateError } from '../middleware/errorHandler';
 import * as AuthService from '../service/AuthService';
 const router = Router();
 
-router.post('/', async (req, res, next) => {
+router.post('/', async (req: Request, res: Response, next: NextFunction) => {
   const { code } = req.query;
 
-  try {
-    const response = await AuthService.loginUser(code as string);
-    return res.status(200).json(response);
-  } catch (error) {
-    if (error instanceof BsmOauthError) {
-      switch (error.type) {
-        case BsmOauthErrorType.INVALID_CLIENT: {
-          return next(new InternalServerException());
-        }
-        case BsmOauthErrorType.AUTH_CODE_NOT_FOUND: {
-          return next(new BadRequestException());
-        }
-        case BsmOauthErrorType.TOKEN_NOT_FOUND: {
-          return next(new InternalServerException());
-        }
-      }
-    } else {
-      return next(new InternalServerException());
-    }
-  }
+  if (!code) return generateError({ status: 400, message: '잘못된 요청' });
+
+  const response = await AuthService.loginUser(code as string);
+  return res.status(200).send(response);
 });
 
 export default router;
