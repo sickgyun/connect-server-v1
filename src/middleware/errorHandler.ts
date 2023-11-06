@@ -1,10 +1,4 @@
-import {
-  ErrorRequestHandler,
-  RequestHandler,
-  Request,
-  Response,
-  NextFunction,
-} from 'express';
+import { ErrorRequestHandler } from 'express';
 
 const DEFAULT_HTTP_STATUS_MESSAGES = {
   400: 'Bad Requests',

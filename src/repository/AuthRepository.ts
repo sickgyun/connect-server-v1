@@ -1,8 +1,8 @@
 import { User } from '@prisma/client';
-import { prismaClient } from '../global/prismaClient';
+import { prisma } from '../global/prisma';
 
 export const upsertUser = async (user: User) => {
-  const result = await prismaClient.user.upsert({
+  const result = await prisma.user.upsert({
     where: {
       id: user.id,
     },
