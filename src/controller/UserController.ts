@@ -1,4 +1,3 @@
-import jwt from 'jsonwebtoken';
 import { Router, Request, Response } from 'express';
 import { generateError } from '../middleware/errorHandler';
 import * as UserService from '../service/UserService';
