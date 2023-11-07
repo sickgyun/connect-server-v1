@@ -9,5 +9,5 @@ export const getUser = async (userCode: number) => {
     return;
   }
 
-  return { message: '성공', data: { userInfo: user } };
+  return { message: '성공', data: { ...user } };
 };
