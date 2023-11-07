@@ -1,7 +1,7 @@
 import { Role } from '@prisma/client';
 import BsmOauth, { BsmUserRole } from 'bsm-oauth';
 import jwt from 'jsonwebtoken';
-import * as UserRepository from '../repository/AuthRepository';
+import * as AuthRepository from '../repository/AuthRepository';
 import getEnvCofigs from '../global/env';
 
 const { BSM_AUTH_CLIENT_ID, BSM_AUTH_CLIENT_SECRET, JWT_SCRECT_KEY } = getEnvCofigs();
@@ -18,19 +18,17 @@ export const login = async (code: string) => {
 
     const userInfo = {
       id: userCode,
-      name: name,
+      name,
       profile_url: profileUrl ?? '',
       role: userRole,
-      cardinal: cardinal,
+      cardinal,
       github_id: '',
+      isGraduate,
     };
-    await UserRepository.upsertUser(userInfo);
+    await AuthRepository.upsertUser(userInfo);
 
     const accessToken = jwt.sign({ userCode }, JWT_SCRECT_KEY, { expiresIn: '30m' });
 
-    return {
-      message: '로그인 성공',
-      data: { accessToken, isGraduate },
-    };
+    return { message: '로그인 성공', data: { accessToken, isGraduate } };
   }
 };

@@ -10,6 +10,7 @@ export const upsertUser = async (user: User) => {
       name: user.name,
       profile_url: user.profile_url,
       role: user.role,
+      isGraduate: user.isGraduate,
     },
     create: {
       id: user.id,
@@ -18,6 +19,7 @@ export const upsertUser = async (user: User) => {
       role: user.role,
       github_id: user.github_id,
       cardinal: user.cardinal,
+      isGraduate: user.isGraduate,
     },
   });
 
