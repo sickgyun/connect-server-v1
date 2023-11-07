@@ -2,7 +2,9 @@ import 'dotenv/config';
 import cors from 'cors';
 import express from 'express';
 
-import AuthController from './controller/AuthContoller';
+import AuthController from './controller/AuthController';
+import UserController from './controller/UserController';
+
 import { errorLogger, errorResponser, generateError } from './middleware/errorHandler';
 
 const app = express();
@@ -13,6 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use('/auth', AuthController);
+app.use('/user', UserController);
 
 app.use(errorLogger);
 app.use(errorResponser);
