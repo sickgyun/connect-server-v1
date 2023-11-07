@@ -498,10 +498,10 @@ braces@^3.0.2, braces@~3.0.2:
   dependencies:
     fill-range "^7.0.1"
 
-bsm-oauth@^1.0.8:
-  version "1.0.8"
-  resolved "https://registry.yarnpkg.com/bsm-oauth/-/bsm-oauth-1.0.8.tgz#55669528fc383e61405f3331bb84460b8c8f6973"
-  integrity sha512-zS6STEolcZZLhMebk9SYjT6On0ULopXDkbss9oe5bul4GMAeXzX8WmYl6vcbr+hXRwk9HmgNFJUJFIGu44h3OA==
+bsm-oauth@^1.0.10:
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/bsm-oauth/-/bsm-oauth-1.0.10.tgz#4addd2f046a5ac2de86a2eaf54f979bd8538ab38"
+  integrity sha512-CWDKhS7PU4eOBkkdI5WacBhc/ZHLR2O94qD+DQ7lglqXAsGRkNr55nXYpGQB/37XqIXX/TLH5V4gCoS8h6aPSw==
   dependencies:
     axios "^1.6.0"
     typescript "^4.8.4"

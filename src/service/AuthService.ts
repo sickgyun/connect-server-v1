@@ -13,14 +13,13 @@ export const loginUser = async (code: string) => {
   const { userCode, profileUrl } = resource;
 
   if (resource.role === BsmUserRole.STUDENT) {
-    const { name, enrolledAt, isGraduate } = resource.student;
-    const cardinal = enrolledAt - 2020;
+    const { name, isGraduate, cardinal } = resource.student;
     const userRole: Role = isGraduate ? Role.GRADUATE : Role.STUDENT;
 
     const userInfo = {
       id: userCode,
       name: name,
-      profile_url: profileUrl,
+      profile_url: profileUrl ?? '',
       role: userRole,
       cardinal: cardinal,
       github_id: '',
@@ -31,7 +30,7 @@ export const loginUser = async (code: string) => {
 
     return {
       message: '로그인 성공',
-      data: { accessToken },
+      data: { accessToken, isGraduate },
     };
   }
 };
