@@ -10,7 +10,7 @@ router.post('/', async (req: Request, res: Response, next: NextFunction) => {
 
   if (!code) return generateError({ status: 400, message: '잘못된 요청' });
 
-  const response = await AuthService.loginUser(code as string);
+  const response = await AuthService.login(code as string);
   return res.status(200).send(response);
 });
 
