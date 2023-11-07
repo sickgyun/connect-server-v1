@@ -1,7 +1,7 @@
 import { Role } from '@prisma/client';
 import BsmOauth, { BsmUserRole } from 'bsm-oauth';
 import jwt from 'jsonwebtoken';
-import * as AuthRepository from '../repository/AuthRepository';
+import * as UserRepository from '../repository/UserRepository';
 import getEnvCofigs from '../global/env';
 
 const { BSM_AUTH_CLIENT_ID, BSM_AUTH_CLIENT_SECRET, JWT_SECRET_KEY } = getEnvCofigs();
@@ -25,7 +25,7 @@ export const login = async (code: string) => {
       github_id: '',
       isGraduate,
     };
-    await AuthRepository.upsertUser(userInfo);
+    await UserRepository.upsertUser(userInfo);
 
     const accessToken = jwt.sign({ userCode }, JWT_SECRET_KEY, { expiresIn: '30m' });
 
