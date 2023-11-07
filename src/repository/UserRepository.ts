@@ -26,7 +26,7 @@ export const upsertUser = async (user: User) => {
   return result;
 };
 
-export const findOneUser = async (userCode: number) => {
+export const findOne = async (userCode: number) => {
   const result = await prisma.user.findUnique({
     where: {
       id: userCode,
