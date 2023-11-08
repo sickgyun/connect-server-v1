@@ -15,6 +15,7 @@ export const upsertUser = async (user: User) => {
     create: {
       id: user.id,
       name: user.name,
+      email: user.email,
       profile_url: user.profile_url,
       role: user.role,
       github_id: user.github_id,
@@ -32,6 +33,7 @@ export const findOne = async (userCode: number) => {
       id: userCode,
     },
     select: {
+      email: true,
       github_id: true,
       profile_url: true,
       name: true,

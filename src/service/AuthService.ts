@@ -10,7 +10,7 @@ const bsmOauth = new BsmOauth(BSM_AUTH_CLIENT_ID, BSM_AUTH_CLIENT_SECRET);
 export const login = async (code: string) => {
   const token = await bsmOauth.getToken(code);
   const resource = await bsmOauth.getResource(token);
-  const { userCode, profileUrl } = resource;
+  const { userCode, profileUrl, email } = resource;
 
   if (resource.role === BsmUserRole.STUDENT) {
     const { name, isGraduate, cardinal } = resource.student;
@@ -19,6 +19,7 @@ export const login = async (code: string) => {
     const userInfo = {
       id: userCode,
       name,
+      email,
       profile_url: profileUrl ?? '',
       role: userRole,
       cardinal,
