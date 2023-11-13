@@ -9,6 +9,7 @@ export const upsertUser = async (user: User) => {
     update: {
       name: user.name,
       profile_url: user.profile_url,
+      company: user.company,
       role: user.role,
       isGraduate: user.isGraduate,
     },
@@ -18,7 +19,6 @@ export const upsertUser = async (user: User) => {
       email: user.email,
       profile_url: user.profile_url,
       role: user.role,
-      github_id: user.github_id,
       cardinal: user.cardinal,
       isGraduate: user.isGraduate,
     },

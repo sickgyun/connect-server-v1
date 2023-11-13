@@ -24,6 +24,7 @@ export const login = async (code: string) => {
       role: userRole,
       cardinal,
       github_id: '',
+      company: '',
       isGraduate,
     };
     await UserRepository.upsertUser(userInfo);
