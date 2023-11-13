@@ -9,8 +9,6 @@ export const upsert = async (user: User) => {
     update: {
       name: user.name,
       profileUrl: user.profileUrl,
-      githubId: user.githubId,
-      company: user.company,
       role: user.role,
       isGraduate: user.isGraduate,
     },
