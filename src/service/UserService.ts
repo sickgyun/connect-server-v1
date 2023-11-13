@@ -1,7 +1,7 @@
 import { generateError } from '../middleware/errorHandler';
 import * as UserRepository from '../repository/UserRepository';
 
-export const getUser = async (userCode: number) => {
+export const getUserInformation = async (userCode: number) => {
   const user = await UserRepository.findOne(userCode);
 
   if (!user) {

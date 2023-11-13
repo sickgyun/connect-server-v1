@@ -16,7 +16,7 @@ router.get('/', async (req: Request, res: Response) => {
   const token = authorization.split('Bearer ')[1];
   const decodedJwt = jwtDecode<{ userCode: number }>(token);
 
-  const response = await UserService.getUser(decodedJwt.userCode);
+  const response = await UserService.getUserInformation(decodedJwt.userCode);
 
   return res.status(200).send(response);
 });
