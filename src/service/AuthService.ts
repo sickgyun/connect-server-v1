@@ -20,10 +20,10 @@ export const login = async (code: string) => {
       id: userCode,
       name,
       email,
-      profile_url: profileUrl ?? '',
+      profileUrl: profileUrl ?? '',
       role: userRole,
       cardinal,
-      github_id: '',
+      githubId: '',
       company: '',
       isGraduate,
     };
