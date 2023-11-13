@@ -13,13 +13,13 @@ enum Role {
 }
 
 model User {
-  id          Int     @id
-  name        String
-  email       String
-  profile_url String
-  cardinal    Int
-  role        Role    @default(STUDENT)
-  github_id   String?
-  company     String?
-  isGraduate  Boolean
+  id         Int     @id
+  name       String
+  email      String
+  profileUrl String
+  cardinal   Int
+  role       Role    @default(STUDENT)
+  githubId   String?
+  company    String?
+  isGraduate Boolean
 }
