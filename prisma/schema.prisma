@@ -12,6 +12,14 @@ enum Role {
   GRADUATE
 }
 
+enum Position {
+  FRONTEND
+  BACKEND
+  DEVOPS
+  APP
+  DESIGNER
+}
+
 model User {
   id         Int     @id
   name       String
@@ -22,4 +30,15 @@ model User {
   githubId   String?
   company    String?
   isGraduate Boolean
+}
+
+model Senior {
+  id         Int      @id
+  name       String
+  email      String?
+  profileUrl String
+  cardinal   Int
+  githubId   String?
+  company    String?
+  position   Position @default(FRONTEND)
 }
