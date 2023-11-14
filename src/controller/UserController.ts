@@ -16,14 +16,14 @@ router.get('/', async (req: Request, res: Response) => {
   const token = authorization.split('Bearer ')[1];
   const decodedJwt = jwtDecode<{ userCode: number }>(token);
 
-  const response = await UserService.getUserInformation(decodedJwt.userCode);
+  const response = await UserService.getUser(decodedJwt.userCode);
 
   return res.status(200).send(response);
 });
 
 router.put('/update', async (req: Request, res: Response) => {
   const { authorization } = req.headers;
-  const { email, company, githubId } = req.body;
+  const { email, githubId } = req.body;
 
   if (!authorization) {
     generateError({ message: '토큰이 비어 있습니다', status: 403 });
@@ -39,7 +39,7 @@ router.put('/update', async (req: Request, res: Response) => {
     githubId: githubId,
   };
 
-  const response = await UserService.updateUserInformation(userInformation);
+  const response = await UserService.updateUser(userInformation);
 
   return res.status(200).send(response);
 });

@@ -23,3 +23,15 @@ model User {
   company    String?
   isGraduate Boolean
 }
+
+model Senior {
+  id         Int     @id
+  name       String
+  email      String?
+  profileUrl String
+  cardinal   Int
+  githubId   String?
+  company    String?
+  position   String
+  isGraduate Boolean
+}

@@ -2,7 +2,7 @@ import { generateError } from '../middleware/errorHandler';
 import * as UserRepository from '../repository/UserRepository';
 import { UpdateUser } from '../repository/UserRepository';
 
-export const getUserInformation = async (userCode: number) => {
+export const getUser = async (userCode: number) => {
   const user = await UserRepository.findOne(userCode);
 
   if (!user) {
@@ -13,7 +13,7 @@ export const getUserInformation = async (userCode: number) => {
   return { message: '성공', data: { ...user } };
 };
 
-export const updateUserInformation = async (userInformation: UpdateUser) => {
+export const updateUser = async (userInformation: UpdateUser) => {
   await UserRepository.update(userInformation);
 
   return { message: '프로필 업데이트 성공' };
