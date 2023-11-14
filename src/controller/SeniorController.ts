@@ -15,7 +15,7 @@ router.post('/', async (req: Request, res: Response) => {
     return;
   }
 
-  if (isGraduate === false) {
+  if (!isGraduate) {
     generateError({ message: '졸업생이 아닙니다', status: 401 });
     return;
   }
