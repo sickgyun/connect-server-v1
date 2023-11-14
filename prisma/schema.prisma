@@ -27,6 +27,7 @@ model User {
 model Senior {
   id         Int     @id
   name       String
+  bio        String?
   email      String?
   profileUrl String
   cardinal   Int

@@ -24,6 +24,7 @@ export const findMany = async () => {
     select: {
       id: true,
       name: true,
+      bio: true,
       profileUrl: true,
       cardinal: true,
       company: true,

@@ -7,8 +7,17 @@ const router = Router();
 
 router.post('/', async (req: Request, res: Response) => {
   const { authorization } = req.headers;
-  const { name, email, profileUrl, cardinal, githubId, company, position, isGraduate } =
-    req.body;
+  const {
+    name,
+    email,
+    bio,
+    profileUrl,
+    cardinal,
+    githubId,
+    company,
+    position,
+    isGraduate,
+  } = req.body;
 
   if (!authorization) {
     generateError({ message: '토큰이 비어 있습니다', status: 403 });
@@ -26,6 +35,7 @@ router.post('/', async (req: Request, res: Response) => {
   const seniorInformation = {
     id: decodedJwt.userCode,
     name: name,
+    bio: bio,
     email: email,
     profileUrl: profileUrl,
     cardinal: cardinal,
