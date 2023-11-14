@@ -1,7 +1,9 @@
 import { User } from '@prisma/client';
 import { prisma } from '../global/prisma';
 
-export const upsert = async (user: User) => {
+type UpsertUser = Omit<User, 'githubId' | 'company'>;
+
+export const upsert = async (user: UpsertUser) => {
   const result = await prisma.user.upsert({
     where: {
       id: user.id,
