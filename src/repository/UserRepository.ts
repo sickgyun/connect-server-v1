@@ -32,7 +32,6 @@ export type UpdateUser = {
   id: number;
   email: string;
   githubId: string;
-  company?: string;
 };
 
 export const update = async (user: UpdateUser) => {
@@ -43,7 +42,6 @@ export const update = async (user: UpdateUser) => {
     data: {
       email: user.email,
       githubId: user.githubId,
-      company: user.company ?? '',
     },
   });
 
