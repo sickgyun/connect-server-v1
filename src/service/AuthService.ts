@@ -18,15 +18,14 @@ export const login = async (code: string) => {
 
     const userInformarion = {
       id: userCode,
-      name,
-      email,
+      name: name,
+      email: email,
       profileUrl: profileUrl ?? '',
       role: userRole,
-      cardinal,
-      githubId: '',
-      company: '',
-      isGraduate,
+      cardinal: cardinal,
+      isGraduate: isGraduate,
     };
+
     await UserRepository.upsert(userInformarion);
 
     const accessToken = jwt.sign({ userCode }, JWT_SECRET_KEY, { expiresIn: '30m' });
