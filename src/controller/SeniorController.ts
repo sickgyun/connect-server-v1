@@ -40,4 +40,10 @@ router.post('/', async (req: Request, res: Response) => {
   return res.status(200).send(response);
 });
 
+router.get('/', async (req: Request, res: Response) => {
+  const response = await SeniorService.getSeniorList();
+
+  return res.status(200).send(response);
+});
+
 export default router;
