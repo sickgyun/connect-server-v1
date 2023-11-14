@@ -18,3 +18,18 @@ export const create = async (senior: Senior) => {
 
   return result;
 };
+
+export const findMany = async () => {
+  const result = await prisma.senior.findMany({
+    select: {
+      id: true,
+      name: true,
+      profileUrl: true,
+      cardinal: true,
+      company: true,
+      position: true,
+    },
+  });
+
+  return result;
+};
