@@ -23,7 +23,7 @@ router.get('/', async (req: Request, res: Response) => {
 
 router.put('/update', async (req: Request, res: Response) => {
   const { authorization } = req.headers;
-  const { email, company, githubId } = req.body;
+  const { email, githubId } = req.body;
 
   if (!authorization) {
     generateError({ message: '토큰이 비어 있습니다', status: 403 });
