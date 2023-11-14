@@ -1,7 +1,7 @@
 import { User } from '@prisma/client';
 import { prisma } from '../global/prisma';
 
-type UpsertUser = Omit<User, 'githubId' | 'company'>;
+export type UpsertUser = Omit<User, 'githubId' | 'company'>;
 
 export const upsert = async (user: UpsertUser) => {
   const result = await prisma.user.upsert({
@@ -22,6 +22,28 @@ export const upsert = async (user: UpsertUser) => {
       role: user.role,
       cardinal: user.cardinal,
       isGraduate: user.isGraduate,
+    },
+  });
+
+  return result;
+};
+
+export type UpdateUser = {
+  id: number;
+  email: string;
+  githubId: string;
+  company?: string;
+};
+
+export const update = async (user: UpdateUser) => {
+  const result = await prisma.user.update({
+    where: {
+      id: user.id,
+    },
+    data: {
+      email: user.email,
+      githubId: user.githubId,
+      company: user.company ?? '',
     },
   });
 

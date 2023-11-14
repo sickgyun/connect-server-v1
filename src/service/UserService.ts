@@ -1,5 +1,6 @@
 import { generateError } from '../middleware/errorHandler';
 import * as UserRepository from '../repository/UserRepository';
+import { UpdateUser } from '../repository/UserRepository';
 
 export const getUserInformation = async (userCode: number) => {
   const user = await UserRepository.findOne(userCode);
@@ -10,4 +11,10 @@ export const getUserInformation = async (userCode: number) => {
   }
 
   return { message: '성공', data: { ...user } };
+};
+
+export const updateUserInformation = async (userInformation: UpdateUser) => {
+  await UserRepository.update(userInformation);
+
+  return { message: '프로필 업데이트 성공' };
 };
