@@ -41,7 +41,7 @@ export const findUnique = async (userCode: number) => {
 export const findMany = async (position: string) => {
   const result = await prisma.senior.findMany({
     where: {
-      position: position,
+      ...(position !== 'all' && { position: position }),
     },
     select: {
       id: true,
