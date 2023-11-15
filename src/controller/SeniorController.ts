@@ -51,7 +51,9 @@ router.post('/', async (req: Request, res: Response) => {
 });
 
 router.get('/', async (req: Request, res: Response) => {
-  const response = await SeniorService.getSeniorList();
+  const { position } = req.query;
+
+  const response = await SeniorService.getSeniorList(position as string);
 
   return res.status(200).send(response);
 });
