@@ -38,8 +38,11 @@ export const findUnique = async (userCode: number) => {
   return result;
 };
 
-export const findMany = async () => {
+export const findMany = async (position: string) => {
   const result = await prisma.senior.findMany({
+    where: {
+      position: position,
+    },
     select: {
       id: true,
       name: true,
