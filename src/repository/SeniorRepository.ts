@@ -19,6 +19,23 @@ export const create = async (senior: Senior) => {
   return result;
 };
 
+export const findUnique = async (userCode: number) => {
+  const result = await prisma.senior.findMany({
+    where: {
+      id: userCode,
+    },
+    select: {
+      name: true,
+      email: true,
+      githubId: true,
+      company: true,
+      position: true,
+    },
+  });
+
+  return result;
+};
+
 export const findMany = async () => {
   const result = await prisma.senior.findMany({
     select: {
