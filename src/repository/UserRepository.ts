@@ -54,6 +54,7 @@ export const findOne = async (userCode: number) => {
       id: userCode,
     },
     select: {
+      id: true,
       email: true,
       githubId: true,
       profileUrl: true,
