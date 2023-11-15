@@ -24,10 +24,10 @@ router.post('/', async (req: Request, res: Response) => {
     return;
   }
 
-  if (!isGraduate) {
-    generateError({ message: '졸업생이 아닙니다', status: 401 });
-    return;
-  }
+  // if (!isGraduate) {
+  //   generateError({ message: '졸업생이 아닙니다', status: 401 });
+  //   return;
+  // }
 
   const token = authorization.split('Bearer ')[1];
   const decodedJwt = jwtDecode<{ userCode: number }>(token);

@@ -7,6 +7,7 @@ export const create = async (senior: Senior) => {
       id: senior.id,
       name: senior.name,
       email: senior.email,
+      bio: senior.bio,
       profileUrl: senior.profileUrl,
       cardinal: senior.cardinal,
       githubId: senior.githubId,
@@ -20,12 +21,13 @@ export const create = async (senior: Senior) => {
 };
 
 export const findUnique = async (userCode: number) => {
-  const result = await prisma.senior.findMany({
+  const result = await prisma.senior.findUnique({
     where: {
       id: userCode,
     },
     select: {
       name: true,
+      bio: true,
       email: true,
       githubId: true,
       company: true,
