@@ -53,6 +53,31 @@ export const findMany = async (position: string) => {
       cardinal: true,
       company: true,
       position: true,
+      email: true,
+    },
+  });
+
+  return result;
+};
+
+export type UpdateStudentProfile = {
+  userCode: number;
+  email?: string;
+  bio?: string;
+  company?: string;
+  position: string;
+};
+
+export const update = async (studentProfile: UpdateStudentProfile) => {
+  const result = await prisma.studenProfile.update({
+    where: {
+      userCode: studentProfile.userCode,
+    },
+    data: {
+      email: studentProfile.email,
+      bio: studentProfile.bio,
+      company: studentProfile.company,
+      position: studentProfile.position,
     },
   });
 
