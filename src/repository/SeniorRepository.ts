@@ -28,6 +28,7 @@ export const findUnique = async (userCode: number) => {
     select: {
       name: true,
       bio: true,
+      profileUrl: true,
       email: true,
       githubId: true,
       company: true,
