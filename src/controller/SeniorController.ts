@@ -58,4 +58,12 @@ router.get('/', async (req: Request, res: Response) => {
   return res.status(200).send(response);
 });
 
+router.get('/:userCode', async (req: Request, res: Response) => {
+  const { userCode } = req.params;
+
+  const response = await SeniorService.getSenior(Number(userCode));
+
+  return res.status(200).send(response);
+});
+
 export default router;
