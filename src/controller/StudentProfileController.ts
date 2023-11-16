@@ -86,4 +86,20 @@ router.patch('/profile', async (req: Request, res: Response) => {
   return res.status(200).send(response);
 });
 
+router.delete('/profile', async (req: Request, res: Response) => {
+  const { authorization } = req.headers;
+
+  if (!authorization) {
+    generateError({ message: '토큰이 비어 있습니다', status: 403 });
+    return;
+  }
+
+  const token = authorization.split('Bearer ')[1];
+  const decodedJwt = jwtDecode<{ userCode: number }>(token);
+
+  const response = await StudentProfileService.deleteStudentProfile(decodedJwt.userCode);
+
+  return res.status(200).send(response);
+});
+
 export default router;

@@ -35,3 +35,9 @@ export const updateStudentProfile = async (studentProfile: UpdateStudentProfile)
 
   return { message: '성공' };
 };
+
+export const deleteStudentProfile = async (userCode: number) => {
+  await StudentProfileRepository.deleteUnique(userCode);
+
+  return { message: '성공' };
+};
