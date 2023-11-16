@@ -83,3 +83,13 @@ export const update = async (studentProfile: UpdateStudentProfile) => {
 
   return result;
 };
+
+export const deleteUnique = async (userCode: number) => {
+  const result = await prisma.studenProfile.delete({
+    where: {
+      userCode: userCode,
+    },
+  });
+
+  return result;
+};
