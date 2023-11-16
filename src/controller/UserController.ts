@@ -21,7 +21,7 @@ router.get('/', async (req: Request, res: Response) => {
   return res.status(200).send(response);
 });
 
-router.put('/update', async (req: Request, res: Response) => {
+router.put('/', async (req: Request, res: Response) => {
   const { authorization } = req.headers;
   const { email, githubId } = req.body;
 

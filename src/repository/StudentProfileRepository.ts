@@ -33,6 +33,7 @@ export const findUnique = async (userCode: number) => {
       githubId: true,
       company: true,
       position: true,
+      cardinal: true,
     },
   });
 
