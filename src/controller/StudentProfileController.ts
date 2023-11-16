@@ -1,5 +1,5 @@
 import { Router, Request, Response } from 'express';
-import * as StudentService from '../service/StudentProfileService';
+import * as StudentProfileService from '../service/StudentProfileService';
 import { jwtDecode } from 'jwt-decode';
 import { generateError } from '../middleware/errorHandler';
 
@@ -40,7 +40,7 @@ router.post('/profile', async (req: Request, res: Response) => {
     isGraduate: isGraduate,
   };
 
-  const response = await StudentService.createStudentProfile(studentProfile);
+  const response = await StudentProfileService.createStudentProfile(studentProfile);
 
   return res.status(200).send(response);
 });
@@ -48,7 +48,7 @@ router.post('/profile', async (req: Request, res: Response) => {
 router.get('/profile', async (req: Request, res: Response) => {
   const { position } = req.query;
 
-  const response = await StudentService.getStudentProfileList(position as string);
+  const response = await StudentProfileService.getStudentProfileList(position as string);
 
   return res.status(200).send(response);
 });
@@ -56,7 +56,7 @@ router.get('/profile', async (req: Request, res: Response) => {
 router.get('/profile/:userCode', async (req: Request, res: Response) => {
   const { userCode } = req.params;
 
-  const response = await StudentService.getStudentProfile(Number(userCode));
+  const response = await StudentProfileService.getStudentProfile(Number(userCode));
 
   return res.status(200).send(response);
 });
