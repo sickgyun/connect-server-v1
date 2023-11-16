@@ -6,7 +6,7 @@ export type UpsertUser = Omit<User, 'githubId' | 'company'>;
 export const upsert = async (user: UpsertUser) => {
   const result = await prisma.user.upsert({
     where: {
-      id: user.id,
+      userCode: user.userCode,
     },
     update: {
       name: user.name,
@@ -15,7 +15,7 @@ export const upsert = async (user: UpsertUser) => {
       isGraduate: user.isGraduate,
     },
     create: {
-      id: user.id,
+      userCode: user.userCode,
       name: user.name,
       email: user.email,
       profileUrl: user.profileUrl,
@@ -29,7 +29,7 @@ export const upsert = async (user: UpsertUser) => {
 };
 
 export type UpdateUser = {
-  id: number;
+  userCode: number;
   email: string;
   githubId: string;
 };
@@ -37,7 +37,7 @@ export type UpdateUser = {
 export const update = async (user: UpdateUser) => {
   const result = await prisma.user.update({
     where: {
-      id: user.id,
+      userCode: user.userCode,
     },
     data: {
       email: user.email,
@@ -51,10 +51,10 @@ export const update = async (user: UpdateUser) => {
 export const findOne = async (userCode: number) => {
   const result = await prisma.user.findUnique({
     where: {
-      id: userCode,
+      userCode: userCode,
     },
     select: {
-      id: true,
+      userCode: true,
       email: true,
       githubId: true,
       profileUrl: true,

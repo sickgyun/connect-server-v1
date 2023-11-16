@@ -3,9 +3,9 @@ import * as SeniotRepository from '../repository/SeniorRepository';
 import { generateError } from '../middleware/errorHandler';
 
 export const createSenior = async (seniorInformation: Senior) => {
-  const validSenior = await SeniotRepository.findUnique(seniorInformation.id);
+  const isValidSenior = await SeniotRepository.findUnique(seniorInformation.userCode);
 
-  if (validSenior) {
+  if (isValidSenior) {
     generateError({ message: '이미 존재하는 Senior입니다.', status: 409 });
     return;
   }

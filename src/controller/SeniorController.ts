@@ -33,7 +33,7 @@ router.post('/', async (req: Request, res: Response) => {
   const decodedJwt = jwtDecode<{ userCode: number }>(token);
 
   const seniorInformation = {
-    id: decodedJwt.userCode,
+    userCode: decodedJwt.userCode,
     name: name,
     bio: bio,
     email: email,

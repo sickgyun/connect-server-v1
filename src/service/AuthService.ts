@@ -17,7 +17,7 @@ export const login = async (code: string) => {
     const userRole: Role = isGraduate ? Role.GRADUATE : Role.STUDENT;
 
     const userInformarion = {
-      id: userCode,
+      userCode: userCode,
       name: name,
       email: email,
       profileUrl: profileUrl ?? '',

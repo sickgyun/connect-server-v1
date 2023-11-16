@@ -34,7 +34,7 @@ router.put('/update', async (req: Request, res: Response) => {
   const decodedJwt = jwtDecode<{ userCode: number }>(token);
 
   const userInformation = {
-    id: decodedJwt.userCode,
+    userCode: decodedJwt.userCode,
     email: email,
     githubId: githubId,
   };

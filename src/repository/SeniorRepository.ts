@@ -4,7 +4,7 @@ import { Senior } from '@prisma/client';
 export const create = async (senior: Senior) => {
   const result = await prisma.senior.create({
     data: {
-      id: senior.id,
+      userCode: senior.userCode,
       name: senior.name,
       email: senior.email,
       bio: senior.bio,
@@ -23,7 +23,7 @@ export const create = async (senior: Senior) => {
 export const findUnique = async (userCode: number) => {
   const result = await prisma.senior.findUnique({
     where: {
-      id: userCode,
+      userCode: userCode,
     },
     select: {
       name: true,
@@ -45,7 +45,7 @@ export const findMany = async (position: string) => {
       ...(position !== 'all' && { position: position }),
     },
     select: {
-      id: true,
+      userCode: true,
       name: true,
       bio: true,
       profileUrl: true,

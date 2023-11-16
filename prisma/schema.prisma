@@ -13,7 +13,7 @@ enum Role {
 }
 
 model User {
-  id         Int     @id
+  userCode   Int     @id
   name       String
   email      String
   profileUrl String?
@@ -25,7 +25,7 @@ model User {
 }
 
 model Senior {
-  id         Int     @id
+  userCode   Int     @id
   name       String
   bio        String?
   email      String?
