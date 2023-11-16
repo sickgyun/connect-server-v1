@@ -1,6 +1,7 @@
 import { StudenProfile } from '@prisma/client';
 import * as StudentProfileRepository from '../repository/StudentProfileRepository';
 import { generateError } from '../middleware/errorHandler';
+import { UpdateStudentProfile } from '../repository/StudentProfileRepository';
 
 export const createStudentProfile = async (studentProfile: StudenProfile) => {
   const isValidStudent = await StudentProfileRepository.findUnique(
@@ -18,13 +19,19 @@ export const createStudentProfile = async (studentProfile: StudenProfile) => {
 };
 
 export const getStudentProfile = async (userCode: number) => {
-  const student = await StudentProfileRepository.findUnique(userCode);
+  const studentProfile = await StudentProfileRepository.findUnique(userCode);
 
-  return { message: '성공', data: student };
+  return { message: '성공', data: studentProfile };
 };
 
 export const getStudentProfileList = async (position: string) => {
-  const student = await StudentProfileRepository.findMany(position);
+  const studentProfileList = await StudentProfileRepository.findMany(position);
 
-  return { message: '성공', dataList: student };
+  return { message: '성공', dataList: studentProfileList };
+};
+
+export const updateStudentProfile = async (studentProfile: UpdateStudentProfile) => {
+  await StudentProfileRepository.update(studentProfile);
+
+  return { message: '성공' };
 };
