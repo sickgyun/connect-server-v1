@@ -1,19 +1,19 @@
 import { prisma } from '../global/prisma';
-import { Senior } from '@prisma/client';
+import { StudenProfile } from '@prisma/client';
 
-export const create = async (senior: Senior) => {
-  const result = await prisma.senior.create({
+export const create = async (studentProfile: StudenProfile) => {
+  const result = await prisma.studenProfile.create({
     data: {
-      userCode: senior.userCode,
-      name: senior.name,
-      email: senior.email,
-      bio: senior.bio,
-      profileUrl: senior.profileUrl,
-      cardinal: senior.cardinal,
-      githubId: senior.githubId,
-      company: senior.company,
-      position: senior.position,
-      isGraduate: senior.isGraduate,
+      userCode: studentProfile.userCode,
+      name: studentProfile.name,
+      email: studentProfile.email,
+      bio: studentProfile.bio,
+      profileUrl: studentProfile.profileUrl,
+      cardinal: studentProfile.cardinal,
+      githubId: studentProfile.githubId,
+      company: studentProfile.company,
+      position: studentProfile.position,
+      isGraduate: studentProfile.isGraduate,
     },
   });
 
@@ -21,7 +21,7 @@ export const create = async (senior: Senior) => {
 };
 
 export const findUnique = async (userCode: number) => {
-  const result = await prisma.senior.findUnique({
+  const result = await prisma.studenProfile.findUnique({
     where: {
       userCode: userCode,
     },
@@ -40,7 +40,7 @@ export const findUnique = async (userCode: number) => {
 };
 
 export const findMany = async (position: string) => {
-  const result = await prisma.senior.findMany({
+  const result = await prisma.studenProfile.findMany({
     where: {
       ...(position !== 'all' && { position: position }),
     },

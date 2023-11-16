@@ -4,7 +4,7 @@ import express from 'express';
 
 import AuthController from './controller/AuthController';
 import UserController from './controller/UserController';
-import SeniorController from './controller/SeniorController';
+import StudentProfileController from './controller/StudentProfileController';
 
 import { errorLogger, errorResponser, generateError } from './middleware/errorHandler';
 
@@ -17,7 +17,7 @@ app.use(express.json());
 
 app.use('/auth', AuthController);
 app.use('/user', UserController);
-app.use('/senior', SeniorController);
+app.use('/student', StudentProfileController);
 
 app.use(errorLogger);
 app.use(errorResponser);
