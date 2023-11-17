@@ -34,6 +34,7 @@ export const findUnique = async (userCode: number) => {
       company: true,
       position: true,
       cardinal: true,
+      isGraduate: true,
     },
   });
 
