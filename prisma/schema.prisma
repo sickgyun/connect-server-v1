@@ -36,3 +36,12 @@ model StudenProfile {
   position   String
   isGraduate Boolean
 }
+
+model MouComapnay {
+  id         Int     @id @default(autoincrement())
+  name       String
+  url        String?
+  profileUrl String?
+  category   String?
+  major      String?
+}
