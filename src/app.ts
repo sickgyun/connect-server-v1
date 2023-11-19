@@ -5,7 +5,7 @@ import express from 'express';
 import AuthController from './controller/AuthController';
 import UserController from './controller/UserController';
 import StudentProfileController from './controller/StudentProfileController';
-import JobController from './controller/JobController';
+import JobPostingController from './controller/JobPostingontroller';
 
 import { errorLogger, errorResponser, generateError } from './middleware/errorHandler';
 
@@ -19,7 +19,7 @@ app.use(express.json());
 app.use('/auth', AuthController);
 app.use('/user', UserController);
 app.use('/student', StudentProfileController);
-app.use('/job', JobController);
+app.use('/job-posting', JobPostingController);
 
 app.use(errorLogger);
 app.use(errorResponser);
