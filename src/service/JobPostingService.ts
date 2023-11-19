@@ -3,12 +3,12 @@ import axios from 'axios';
 
 type JobPosting = {
   title: string;
-  image?: string;
-  company: string;
-  link: string;
+  imageUrl?: string;
+  companyName: string;
+  detailLink: string;
 };
 
-export const getRallitJobList = async () => {
+export const getJobList = async () => {
   const response = await axios.get(
     'https://www.rallit.com/?jobGroup=DEVELOPER&jobLevel=JUNIOR,BEGINNER,INTERN&pageNumber=1'
   );
@@ -16,13 +16,13 @@ export const getRallitJobList = async () => {
   let jobPostingList: JobPosting[] = [];
 
   $('.css-mao678 > li').each((index, item) => {
-    if (index < 4) {
+    if (index < 6) {
       const title = $(item).find('.summary__title').text();
-      const image = $(item).find('img').attr('src');
-      const company = $(item).find('.summary__company-name').text();
-      const link = 'https://www.rallit.com/' + $(item).find('a').attr('href');
+      const imageUrl = $(item).find('img').attr('src');
+      const companyName = $(item).find('.summary__company-name').text();
+      const detailLink = 'https://www.rallit.com/' + $(item).find('a').attr('href');
 
-      jobPostingList.push({ title, image, company, link });
+      jobPostingList.push({ title, imageUrl, companyName, detailLink });
     }
   });
 
