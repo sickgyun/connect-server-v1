@@ -6,6 +6,7 @@ import AuthController from './controller/AuthController';
 import UserController from './controller/UserController';
 import StudentProfileController from './controller/StudentProfileController';
 import MouCompanyController from './controller/MouCompanyController';
+import JobPostingController from './controller/JobPostingontroller';
 
 import { errorLogger, errorResponser } from './middleware/errorHandler';
 
@@ -20,6 +21,7 @@ app.use('/auth', AuthController);
 app.use('/user', UserController);
 app.use('/student', StudentProfileController);
 app.use('/mou-company', MouCompanyController);
+app.use('/job-posting', JobPostingController);
 
 app.use(errorLogger);
 app.use(errorResponser);
