@@ -1,7 +1,5 @@
 import { Router, Request, Response } from 'express';
 import * as MouCompanyService from '../service/MouCompanyService';
-import { jwtDecode } from 'jwt-decode';
-import { generateError } from '../middleware/errorHandler';
 
 const router = Router();
 
@@ -23,6 +21,24 @@ router.post('/', async (req: Request, res: Response) => {
   };
 
   const response = await MouCompanyService.createMouCompany(mouCompany);
+
+  return res.status(200).send(response);
+});
+
+router.patch('/:mouCompanyId', async (req: Request, res: Response) => {
+  const { mouCompanyId } = req.params;
+  const { companyName, detailUrl, profileUrl, category, major } = req.body;
+
+  const mouCompany = {
+    id: Number(mouCompanyId),
+    companyName: companyName,
+    detailUrl: detailUrl,
+    profileUrl: profileUrl,
+    category: category,
+    major: major,
+  };
+
+  const response = await MouCompanyService.updateMouCompany(mouCompany);
 
   return res.status(200).send(response);
 });
