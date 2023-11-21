@@ -28,9 +28,7 @@ export const login = async (code: string) => {
 
     await UserRepository.upsert(userInformarion);
 
-    const accessToken = jwt.sign({ userCode, userRole: 'student' }, JWT_SECRET_KEY, {
-      expiresIn: '30m',
-    });
+    const accessToken = jwt.sign({ userCode }, JWT_SECRET_KEY, { expiresIn: '30m' });
 
     return { message: '로그인 성공', data: { accessToken, isGraduate } };
   }
