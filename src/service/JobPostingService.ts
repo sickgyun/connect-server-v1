@@ -10,7 +10,12 @@ type JobPosting = {
 
 export const getJobList = async () => {
   const response = await axios.get(
-    'https://www.rallit.com/?jobGroup=DEVELOPER&jobLevel=JUNIOR,BEGINNER,INTERN&pageNumber=1'
+    'https://www.rallit.com/?jobGroup=DEVELOPER&jobLevel=JUNIOR,BEGINNER,INTERN&pageNumber=1',
+    {
+      headers: {
+        'User-Agent': 'Mozilla/5.0',
+      },
+    }
   );
   const $ = load(response.data);
   let jobPostingList: JobPosting[] = [];
