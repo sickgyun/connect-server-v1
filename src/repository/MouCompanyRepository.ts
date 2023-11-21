@@ -30,3 +30,20 @@ export const findMany = async () => {
 
   return result;
 };
+
+export const update = async (mouComapnay: MouComapnay) => {
+  const result = await prisma.mouComapnay.update({
+    where: {
+      id: mouComapnay.id,
+    },
+    data: {
+      companyName: mouComapnay.companyName,
+      detailUrl: mouComapnay.detailUrl,
+      profileUrl: mouComapnay.profileUrl,
+      category: mouComapnay.category,
+      major: mouComapnay.major,
+    },
+  });
+
+  return result;
+};
