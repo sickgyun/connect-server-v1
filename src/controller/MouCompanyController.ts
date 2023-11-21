@@ -11,4 +11,20 @@ router.get('/', async (req: Request, res: Response) => {
   return res.status(200).send(response);
 });
 
+router.post('/', async (req: Request, res: Response) => {
+  const { companyName, detailUrl, profileUrl, category, major } = req.body;
+
+  const mouCompany = {
+    companyName: companyName,
+    detailUrl: detailUrl,
+    profileUrl: profileUrl,
+    category: category,
+    major: major,
+  };
+
+  const response = await MouCompanyService.createMouCompany(mouCompany);
+
+  return res.status(200).send(response);
+});
+
 export default router;
