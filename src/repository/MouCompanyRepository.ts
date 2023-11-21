@@ -47,3 +47,13 @@ export const update = async (mouComapnay: MouComapnay) => {
 
   return result;
 };
+
+export const deleteUnique = async (mouCompanyId: number) => {
+  const result = await prisma.mouComapnay.delete({
+    where: {
+      id: mouCompanyId,
+    },
+  });
+
+  return result;
+};

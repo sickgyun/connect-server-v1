@@ -19,3 +19,9 @@ export const updateMouCompany = async (mouCompany: MouComapnay) => {
 
   return { message: '성공' };
 };
+
+export const deleteMouCompany = async (mouCompanyId: number) => {
+  await MouCompanyRepository.deleteUnique(mouCompanyId);
+
+  return { message: '성공' };
+};
