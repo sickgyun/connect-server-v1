@@ -19,7 +19,7 @@ app.use(express.json());
 
 app.use('/auth', AuthController);
 app.use('/user', UserController);
-app.use('/student', StudentProfileController);
+app.use('/student-profile', StudentProfileController);
 app.use('/mou-company', MouCompanyController);
 app.use('/job-posting', JobPostingController);
 

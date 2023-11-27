@@ -5,7 +5,7 @@ import { generateError } from '../middleware/errorHandler';
 
 const router = Router();
 
-router.post('/profile', async (req: Request, res: Response) => {
+router.post('/', async (req: Request, res: Response) => {
   const { authorization } = req.headers;
   const {
     name,
@@ -45,7 +45,7 @@ router.post('/profile', async (req: Request, res: Response) => {
   return res.status(200).send(response);
 });
 
-router.get('/profile', async (req: Request, res: Response) => {
+router.get('/', async (req: Request, res: Response) => {
   const { position } = req.query;
 
   const response = await StudentProfileService.getStudentProfileList(position as string);
@@ -61,7 +61,7 @@ router.get('/profile/:userCode', async (req: Request, res: Response) => {
   return res.status(200).send(response);
 });
 
-router.patch('/profile', async (req: Request, res: Response) => {
+router.patch('/', async (req: Request, res: Response) => {
   const { authorization } = req.headers;
   const { bio, email, company, position } = req.body;
 
@@ -86,7 +86,7 @@ router.patch('/profile', async (req: Request, res: Response) => {
   return res.status(200).send(response);
 });
 
-router.delete('/profile', async (req: Request, res: Response) => {
+router.delete('/', async (req: Request, res: Response) => {
   const { authorization } = req.headers;
 
   if (!authorization) {
