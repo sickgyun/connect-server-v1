@@ -1,8 +1,8 @@
 {
-  "name": "cheerup-server",
+  "name": "connect-server",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "https://github.com/recuritup/cheerup-server",
+  "repository": "https://github.com/recuritup/connect-legacy-server",
   "author": "SEOKKAMONI <sj01048260279@gmail.com>",
   "license": "MIT",
   "scripts": {
