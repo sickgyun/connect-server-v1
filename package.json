@@ -1,12 +1,12 @@
 {
-  "name": "connect-server",
+  "name": "cheerup-server",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "https://github.com/recuritup/connect-legacy-server",
+  "repository": "https://github.com/recuritup/cheerup-server",
   "author": "SEOKKAMONI <sj01048260279@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "node dist/app.js",
+    "start": "ts-node --files src/app.ts",
     "build": "tsc -p .",
     "dev": "nodemon --watch \"src/**/*.ts\" --exec ts-node --files src/app.ts",
     "format": "prettier --write \"**/*.{ts,md}\""
