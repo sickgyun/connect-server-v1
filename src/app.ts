@@ -1,13 +1,11 @@
 import 'dotenv/config';
 import cors from 'cors';
 import express from 'express';
-
 import AuthController from './controller/AuthController';
 import UserController from './controller/UserController';
 import StudentProfileController from './controller/StudentProfileController';
 import MouCompanyController from './controller/MouCompanyController';
 import JobPostingController from './controller/JobPostingontroller';
-
 import { errorLogger, errorResponser } from './middleware/errorHandler';
 
 const app = express();
