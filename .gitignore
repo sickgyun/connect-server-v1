@@ -1,6 +1,7 @@
 # production
 /node_modules
 /dist
+connect.pem
 
 # misc
 .DS_Store
