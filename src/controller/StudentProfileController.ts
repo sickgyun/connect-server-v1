@@ -53,7 +53,7 @@ router.get('/', async (req: Request, res: Response) => {
   return res.status(200).send(response);
 });
 
-router.get('/profile/:userCode', async (req: Request, res: Response) => {
+router.get('/:userCode', async (req: Request, res: Response) => {
   const { userCode } = req.params;
 
   const response = await StudentProfileService.getStudentProfile(Number(userCode));
