@@ -15,21 +15,21 @@ export const login = async (code: string) => {
     const { userCode, profileUrl, email } = resource;
     const { name, isGraduate, cardinal } = resource.student;
 
-    const role: Role = isGraduate ? Role.GRADUATE : Role.STUDENT;
+    const userRole: Role = isGraduate ? Role.GRADUATE : Role.STUDENT;
 
     const userInformarion = {
       userCode: userCode,
       name: name,
       email: email,
       profileUrl: profileUrl ?? '',
-      role: role,
+      role: userRole,
       cardinal: cardinal,
       isGraduate: isGraduate,
     };
 
     await UserRepository.upsert(userInformarion);
 
-    const accessToken = jwt.sign({ userCode, role }, JWT_SECRET_KEY, {
+    const accessToken = jwt.sign({ userCode }, JWT_SECRET_KEY, {
       expiresIn: '30m',
     });
 
