@@ -1,5 +1,6 @@
 import 'dotenv/config';
 import cors from 'cors';
+import http from "http"
 import express from 'express';
 
 import AuthController from './controller/AuthController';
@@ -14,7 +15,7 @@ const app = express();
 const PORT = process.env.PORT || 8088;
 
 app.use(cors({
-  origin: true,
+  origin: "https://recuritup.vercel.app",
   credentials: true,
 }));
 app.use(express.urlencoded({ extended: true }));
