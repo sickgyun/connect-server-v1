@@ -14,8 +14,7 @@ router.get('/', async (req: Request, res: Response) => {
     return;
   }
 
-  const token = authorization.split('Bearer ')[1];
-  const decodedJwt = jwtDecode<{ userCode: number }>(token);
+  const decodedJwt = jwtDecode<{ userCode: number }>(authorization);
 
   const response = await UserService.getUser(decodedJwt.userCode);
 
@@ -31,8 +30,7 @@ router.patch('/', async (req: Request, res: Response) => {
     return;
   }
 
-  const token = authorization.split('Bearer ')[1];
-  const decodedJwt = jwtDecode<{ userCode: number }>(token);
+  const decodedJwt = jwtDecode<{ userCode: number }>(authorization);
 
   const userInformation = {
     userCode: decodedJwt.userCode,

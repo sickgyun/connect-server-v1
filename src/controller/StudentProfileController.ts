@@ -25,8 +25,7 @@ router.post('/', async (req: Request, res: Response) => {
     return;
   }
 
-  const token = authorization.split('Bearer ')[1];
-  const decodedJwt = jwtDecode<{ userCode: number }>(token);
+  const decodedJwt = jwtDecode<{ userCode: number }>(authorization);
 
   const studentProfile = {
     userCode: decodedJwt.userCode,
@@ -71,8 +70,7 @@ router.patch('/', async (req: Request, res: Response) => {
     return;
   }
 
-  const token = authorization.split('Bearer ')[1];
-  const decodedJwt = jwtDecode<{ userCode: number }>(token);
+  const decodedJwt = jwtDecode<{ userCode: number }>(authorization);
 
   const studentProfile = {
     userCode: decodedJwt.userCode,
@@ -95,8 +93,7 @@ router.delete('/', async (req: Request, res: Response) => {
     return;
   }
 
-  const token = authorization.split('Bearer ')[1];
-  const decodedJwt = jwtDecode<{ userCode: number }>(token);
+  const decodedJwt = jwtDecode<{ userCode: number }>(authorization);
 
   const response = await StudentProfileService.deleteStudentProfile(decodedJwt.userCode);
 
