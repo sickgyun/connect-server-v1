@@ -1,7 +1,9 @@
 import { Router, Request, Response } from 'express';
 import * as JobPostingService from '../service/JobPostingService';
+import asyncify from 'express-asyncify';
 
-const router = Router();
+
+const router = asyncify(Router());
 
 router.get('/', async (req: Request, res: Response) => {
   const response = await JobPostingService.getJobList();

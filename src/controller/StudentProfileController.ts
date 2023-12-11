@@ -2,8 +2,9 @@ import { Router, Request, Response } from 'express';
 import * as StudentProfileService from '../service/StudentProfileService';
 import { jwtDecode } from 'jwt-decode';
 import { generateError } from '../middleware/errorHandler';
+import asyncify from 'express-asyncify';
 
-const router = Router();
+const router = asyncify(Router());
 
 router.post('/', async (req: Request, res: Response) => {
   const { authorization } = req.headers;

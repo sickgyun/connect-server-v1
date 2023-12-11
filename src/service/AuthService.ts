@@ -3,12 +3,18 @@ import BsmOauth, { BsmUserRole } from 'bsm-oauth';
 import jwt from 'jsonwebtoken';
 import * as UserRepository from '../repository/UserRepository';
 import getEnvCofigs from '../global/env';
+import { generateError } from '../middleware/errorHandler';
 
 const { BSM_AUTH_CLIENT_ID, BSM_AUTH_CLIENT_SECRET, JWT_SECRET_KEY } = getEnvCofigs();
 const bsmOauth = new BsmOauth(BSM_AUTH_CLIENT_ID, BSM_AUTH_CLIENT_SECRET);
 
 export const login = async (code: string) => {
   const token = await bsmOauth.getToken(code);
+
+  if(!token) {
+    generateError({message: "토큰이 없습니다.", status: 400})
+  }
+
   const resource = await bsmOauth.getResource(token);
 
   if (resource.role === BsmUserRole.STUDENT) {
