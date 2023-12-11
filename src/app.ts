@@ -13,7 +13,10 @@ import { errorLogger, errorResponser } from './middleware/errorHandler';
 const app = express();
 const PORT = process.env.PORT || 8088;
 
-app.use(cors());
+app.use(cors({
+  origin: true,
+  credentials: true,
+}));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
